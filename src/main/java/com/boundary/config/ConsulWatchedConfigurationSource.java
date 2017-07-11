@@ -161,7 +161,8 @@ public class ConsulWatchedConfigurationSource extends AbstractExecutionThreadSer
         }
         ImmutableMap.Builder<String, Object> builder = ImmutableMap.builder();
         for(GetValue gv : kv.getValue()) {
-            builder.put(keyFunc(gv), valFunc(gv));
+            if(gv.getValue() != null)
+                builder.put(keyFunc(gv), valFunc(gv));
         }
         return builder.build();
     }
